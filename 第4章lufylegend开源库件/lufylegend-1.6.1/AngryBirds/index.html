@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<title>AngryBirds</title>
+<script type="text/javascript" src="./main/Box2dWeb-2.1.a.3.min.js"></script> 
+<script type="text/javascript" src="../lufylegend-1.6.0.min.js"></script> 
+<script type="text/javascript" src="./main/Bird.js"></script> 
+<script type="text/javascript" src="./main/Pig.js"></script> 
+<script type="text/javascript" src="./main/Stage.js"></script> 
+<script type="text/javascript" src="./main/RemoveObject.js"></script> 
+<script type="text/javascript" src="./main/Main.js"></script> 
+<script type="text/javascript">
+function doScroll() {
+	if(window.pageYOffset === 0) {
+		window.scrollTo(0, 1);
+	}
+}
+window.onload = function() {
+	setTimeout(doScroll, 100);
+	init(10,"mylegend",800,480,main,LEvent.INIT);
+}
+window.onorientationchange = function() {
+	setTimeout(doScroll, 100);
+};
+window.onresize = function() {
+	setTimeout(doScroll, 100);
+}
+</script>
+</head>
+<body>
+<div id="mylegend">loading……</div>
+</body>
+</html>

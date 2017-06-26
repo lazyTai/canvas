@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>平移</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.strokeRect(0, 0, 10, 10)
+
+    var index = (function () {
+        var count = 0;
+        return setInterval(function () {
+            if (count > 100) {
+                clearInterval(index)
+                return false
+            }
+            ctx.clearRect(-100, 0, 500, 500)
+            ctx.beginPath();
+//            ctx.translate(count, 0);
+            count = count + 10;
+            ctx.strokeRect(count, 0, 100, 100)
+        }, 100)
+    })()
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片的加载与显示</title>
+</head>
+<body>
+<script src="./lufylegend-1.6.1/lufylegend-1.6.1.js"></script>
+
+<div id="mylegend"></div>
+<script>
+    init(50, 'mylegend', 500, 300, main)
+    function main() {
+        console.log('init')
+
+        var load = null;
+        loader = new LLoader();
+        loader.addEventListener(LEvent.COMPLETE, loadImage);
+        function loadImage(event) {
+//            var bitmapData = new LBitmapData(loader.content);//LBitmapData(image,x, y,width,height)
+            var bitmapData = new LBitmapData(loader.content, 0, 0, 100, 100);//LBitmapData(image,x, y,width,height)
+            //操作本来的图片 的xy和wh
+
+            var bitmap = new LBitmap(bitmapData)
+            /*再来看LBitmap对象，LBitmap不但能将图片显示到Canvas画板上，还可以控制图片的各种属性，
+             如坐标（x,y）、透明度（alpha）、旋转（rotate）、缩放（scaleX,scaleY）等。
+             在代码清单4-4中，则设置了图片的旋转和透明度
+             */
+
+            /*坐标*/
+            /*  bitmap.x = 100;
+             bitmap.y = 100;*/
+
+            /*旋转*/
+            /*bitmap.rotate=60*/
+
+            /*透明度*/
+            bitmap.alpha = .5;
+            addChild(bitmap)
+        }
+
+        loader.load('1.png', 'bitmapData')
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        九九八十一难，人生常态。
+        命里必须得走这一遭。没有抱怨，我不好不坏，吃饱喝足，能做点喜欢的事情，够了。</title>
+</head>
+<body>
+<canvas id="canvas" width="500" heigth="500"></canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var ctx = canvas.getContext('2d')
+    var oldCurrentX = 0;
+    var oldCurrentY = 0;
+    var isDown = false;
+    function init() {
+        ctx.fillStyle = "#222";
+        ctx.fillRect(0, 0, 500, 500)
+        canvas.addEventListener('mousemove', draw)
+        canvas.addEventListener('mousedown', down)
+        canvas.addEventListener('mouseup', up)
+    }
+    function draw(event) {
+        if (isDown) {
+            console.log('==move==')
+            var currentX = event.pageX - 10;
+            var currentY = event.pageY - 10;
+            ctx.beginPath();
+            ctx.strokeStyle = "#fff"
+            ctx.moveTo(oldCurrentX, oldCurrentY);
+            ctx.lineTo(currentX, currentY)
+            ctx.stroke();
+            oldCurrentX = currentX;
+            oldCurrentY = currentY;
+        }
+    }
+    function down(event) {
+        console.log('==down==')
+        isDown = true;
+        oldCurrentX = event.pageX - 10;
+        oldCurrentY = event.pageY - 10;
+    }
+    function up() {
+        console.log('==up==')
+        isDown = false
+    }
+    init()
+</script>
+</body>
+</html>
