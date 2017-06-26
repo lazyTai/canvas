@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+</head>
+<body>
+
+<canvas id="canvas" width="630" height="360"></canvas>
+<script>
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        var context = canvas.getContext('2d');
+
+        /*设置颜色*/
+        context.fillStyle = 'rgb(255,0,0)'
+        /*花矩形*/
+        context.fillRect(20, 30, 60, 36)
+    }
+</script>
+</body>
+</html>
