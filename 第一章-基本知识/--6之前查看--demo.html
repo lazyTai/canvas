@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //    url：http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html
+    /* function Func() {
+     }
+
+     /!*一個方法 有2個屬性  第一個是prototype  第二個就是constroctor*!/
+     console.log(Func.constructor)
+     console.log(Func.prototype)*/
+
+    function Func(name) {
+        this.name = name //this ☞的是new之后的对象
+    }
+    Func.prototype.a = function () {
+        debugger
+    }
+    //    console.log(Func.constructor)//方法
+    console.log("Func.prototype")
+    console.log(Func.prototype)//属性
+
+    var obj = new Func();
+    console.log("obj")
+    console.log(obj)
+    //    console.log(obj.__proto__ === Func.prototype)
+    console.log(obj.constructor)//===>就是方法Func
+    console.log(obj.constructor.prototype)//===>就是方法Func
+
+</script>
+</body>
+</html>

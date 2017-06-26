@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>继承</title>
+</head>
+<body>
+<script>
+    var PeopleClass = function () {
+        this.type = "ren"
+    }
+    PeopleClass.prototype = {
+        getType: function () {
+            return this.type
+        }
+    }
+
+    /*    var ChildClass = function (name, sex) {
+     PeopleClass.apply(this, arguments)
+     /!*
+     執行PeopleClass，让this.type暴露出来，使用apply让this变成childclass的this
+     也就是这句话 <==> this.type="ren"
+     *!/
+
+     this.name = name;
+     this.sex = sex
+     }*/
+
+    //    var a = new ChildClass('1', 'nan')
+    //    console.log(a.type)//ok
+    //    console.log(a.getType())//===no ok
+    /*暴露问题，我们父亲的属性复制过去了，但是父亲的方法不可以？？这么帮？？？
+     * 而方法的继承，只要循环使用父对象的prototype进行复制，即可达到继承的目的
+     * PeopleClass.prototype
+     *
+     * */
+    var ChildClass = function (name, sex) {
+        PeopleClass.apply(this, arguments)
+        this.name = name;
+        this.sex = sex;
+
+        for (var key in PeopleClass.prototype) {
+            console.log(this)
+            if (!this.constructor.prototype[key]) {
+                //this.constructor.prototype[key]
+                /*特别说明：只有构造函数才有prototype属性，
+                 而构造函数的实例是没有该属性的，
+                 也就是说console.log(a1.prototype)输出的是undefined。
+                 在javascript中，每个函数都自动有一个prototype属性，而不是每一个对象拥有prototype属性
+
+                 也就是this.prototype ===>undefied
+                 所以用this.constructor.prototype来操作这个方法【类（其实js没有类，我们硬要把方法叫做类，搞笑）】prototype
+                 * */
+                this.constructor.prototype[key] = PeopleClass.prototype[key]
+            }
+            /*else {
+             this.constructor.prototype[key]['super'] = PeopleClass.prototype[key]
+             }*/
+        }
+    }
+    var a = new ChildClass(1, 2)
+    console.log(a.getType())
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深入分析js中的constructor 和prototype</title>
+</head>
+<body>
+<script>
+    /*
+     * 第一个需要说明的问题是
+     * 函数有prototype属性，根据函数生成的对象是没有prototype属性的
+     * */
+    function Func(name) {
+        this.name = name
+    }
+    var obj = new Func('1');
+    console.log(Func.prototype)
+    /*
+     constructor : function Func()
+     __proto__ : Object
+     */
+
+    //    console.log(a.prototype)//undefined
+    console.log(obj)
+
+
+    /*第二个问题
+     * 我们的
+     * Func.prototype输出了2个东西，constructor，__proto__==》这些是什么鬼
+     *
+     * 这个constructor  就是我们写的  function Func(){}
+     *
+     * __proto__
+     * 　每个对象都会在其内部初始化一个属性，就是__proto__，当我们访问一个对象的属性 时，如果这个对象内部不存在这个属性，
+     * 那么他就会去__proto__里找这个属性，
+     * 这个__proto__又会有自己的__proto__，于是就这样 一直找下去。
+     *
+     * __proto__怎么来的？
+     * 在我们使用Func  new的时候，obj对象就会生成__proto__并且把func的prototype给__proto__
+     * */
+</script>
+</body>
+</html>

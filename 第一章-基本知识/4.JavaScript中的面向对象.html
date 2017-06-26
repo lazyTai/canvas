@@ -9,6 +9,41 @@
 <body>
 <script>
     /*类*/
+    /*
+     /!*define*!/
+     function MyClass() {
+
+     }
+
+     /!*use*!/
+     var a = new MyClass()*/
+    /*function MyClass(name, age) {
+     this.age = age;//<====================属性
+     this.name = name;
+     this.toString = function () {//<===============这个类添加一个方法
+     console.log(this.age + '======' + this.name)
+     }
+     }
+     var a = new MyClass('liumingtai', 10);
+     a.toString()*/
+    /*使用prototype
+     * 这就是JavaScript中给类添加方法的实现，它是利用prototype来实现封装的。
+     * */
+    function MyClass(name, age) {
+        this.name = name;
+        this.age = age
+    }
+    MyClass.prototype = {
+        toString: function () {
+            console.log(this.name + "====" + this.age)
+        },
+        sayHello: function (hello) {
+            console.log(hello)
+        }
+    }
+
+    var a = new MyClass('1', 12);
+    a.sayHello("ASDASD")
 
 </script>
 </body>
